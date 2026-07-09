@@ -5,6 +5,13 @@
 const DISCORD_INVITE = "https://discord.gg/FFm85xVMg";
 const API = "https://gr0ut-globalmap.sebastien050599.workers.dev/api/clans";
 
+// Clan mis en vedette (grande carte) + palmarès chars de récompense (Manœuvres)
+const FEATURED_TAG = "GR0UT";
+const MANEUVERS = [
+  { label: "Manœuvres nov. 2025", tanks: 46 },
+  { label: "Manœuvres avr. 2026", tanks: 60 },
+];
+
 // --- Liens Discord ---
 document.querySelectorAll("[data-discord]").forEach((a) => {
   a.href = DISCORD_INVITE;
@@ -53,21 +60,40 @@ async function loadClans() {
     const { clans } = await res.json();
     if (!clans || !clans.length) throw new Error("empty");
 
-    grid.innerHTML = clans.map((c) => {
-      const col = COLORS[c.tag] || c.color || "#3ddc84";
-      return `
-      <article class="clan glass reveal" style="--c:${col}">
-        <img class="clan__emblem" src="${c.emblem}" alt="Emblème ${c.tag}" loading="lazy" />
-        <div class="clan__tag">${c.tag}</div>
-        <div class="clan__role">${c.role}</div>
-        <div class="clan__name">${c.name || ""}</div>
-        <div class="clan__stats">
-          <div><b>${fmt(c.members)}</b><span>Membres</span></div>
-          <div><b>${c.elo10 ?? "—"}</b><span>ELO T10</span></div>
-          <div><b>${c.winrate != null ? c.winrate + "%" : "—"}</b><span>Victoires CG</span></div>
+    const col = (c) => COLORS[c.tag] || c.color || "#3ddc84";
+    const featured = clans.find((c) => c.tag === FEATURED_TAG) || clans[0];
+    const others = clans.filter((c) => c !== featured);
+    const manHtml = MANEUVERS.map((m) => `<div class="pal"><b>${m.tanks}</b><span>${m.label}</span></div>`).join("");
+
+    grid.innerHTML =
+      `<article class="clan clan--featured glass reveal" style="--c:${col(featured)}">
+        <div class="clan__id">
+          <img class="clan__emblem" src="${featured.emblem}" alt="Emblème ${featured.tag}" />
+          <div>
+            <div class="clan__tag">${featured.tag}</div>
+            <div class="clan__role">${featured.role}</div>
+            <div class="clan__name">${featured.name || ""}</div>
+          </div>
         </div>
-      </article>`;
-    }).join("");
+        <div class="clan__feat">
+          <div class="pal"><b>${fmt(featured.members)}</b><span>Membres</span></div>
+          <div class="pal-sep"></div>
+          <div>
+            <div class="pal-title">🏆 Chars de récompense gagnés</div>
+            <div class="pal-row">${manHtml}</div>
+          </div>
+        </div>
+      </article>
+      <div class="clans__row">` +
+      others.map((c) => `
+        <article class="clan glass reveal" style="--c:${col(c)}">
+          <img class="clan__emblem" src="${c.emblem}" alt="Emblème ${c.tag}" loading="lazy" />
+          <div class="clan__tag">${c.tag}</div>
+          <div class="clan__role">${c.role}</div>
+          <div class="clan__name">${c.name || ""}</div>
+          <div class="clan__stats clan__stats--solo"><div><b>${fmt(c.members)}</b><span>Membres</span></div></div>
+        </article>`).join("") +
+      `</div>`;
     grid.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
     // Stats globales
@@ -82,16 +108,19 @@ async function loadClans() {
     });
   } catch (e) {
     // Fallback : le site reste beau même si l'API est indispo
-    grid.innerHTML = [
-      { t: "GR0UT", r: "Clan principal", c: "#3ddc84" },
-      { t: "GR0VT", r: "Grout Elite", c: "#8b5cf6" },
-      { t: "GR0UF", r: "Grout Family", c: "#38bdf8" },
-    ].map((c) => `
-      <article class="clan glass in" style="--c:${c.c}">
-        <div class="clan__tag" style="margin-top:1rem">${c.t}</div>
-        <div class="clan__role">${c.r}</div>
-        <div class="clan__name">Communauté francophone WoT</div>
-      </article>`).join("");
+    const manHtml = MANEUVERS.map((m) => `<div class="pal"><b>${m.tanks}</b><span>${m.label}</span></div>`).join("");
+    grid.innerHTML =
+      `<article class="clan clan--featured glass in" style="--c:#3ddc84">
+        <div class="clan__id">
+          <img class="clan__emblem" src="https://eu.wargaming.net/clans/media/clans/emblems/cl_786/500165786/emblem_195x195.png" alt="GR0UT" />
+          <div><div class="clan__tag">GR0UT</div><div class="clan__role">Clan principal</div><div class="clan__name">Communauté francophone WoT</div></div>
+        </div>
+        <div class="clan__feat"><div><div class="pal-title">🏆 Chars de récompense gagnés</div><div class="pal-row">${manHtml}</div></div></div>
+      </article>
+      <div class="clans__row">
+        <article class="clan glass in" style="--c:#8b5cf6"><div class="clan__tag">GR0VT</div><div class="clan__role">Grout Elite</div><div class="clan__name">Clan Élite</div></article>
+        <article class="clan glass in" style="--c:#38bdf8"><div class="clan__tag">GR0UF</div><div class="clan__role">Grout Family</div><div class="clan__name">Académie / détente</div></article>
+      </div>`;
     document.querySelectorAll("#stats-grid .stat__num").forEach((el, i) => { el.textContent = ["—", "—", "3"][i]; });
   }
 }

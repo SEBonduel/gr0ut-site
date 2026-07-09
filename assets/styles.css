@@ -114,7 +114,8 @@ section:not(.hero) { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem
 .stat__label { color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem; }
 
 /* ---------- Clans ---------- */
-.clans__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.clans__grid { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+.clans__row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
 .clan {
   position: relative; padding: 2.2rem 1.8rem; text-align: center; overflow: hidden;
   transition: transform 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.35s, box-shadow 0.35s;
@@ -129,6 +130,21 @@ section:not(.hero) { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem
 .clan__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; border-top: 1px solid var(--border); padding-top: 1.2rem; }
 .clan__stats b { display: block; font-family: "Rajdhani"; font-size: 1.35rem; color: #fff; }
 .clan__stats span { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.clan__stats--solo { grid-template-columns: 1fr; max-width: 160px; margin: 0 auto; }
+
+/* Carte GR0UT en vedette */
+.clan--featured { display: flex; align-items: center; justify-content: space-between; gap: 2rem; text-align: left; padding: 2.4rem clamp(1.6rem, 4vw, 2.8rem); }
+.clan--featured .clan__id { display: flex; align-items: center; gap: 1.5rem; }
+.clan--featured .clan__emblem { width: 116px; height: 116px; margin: 0; }
+.clan--featured .clan__tag { font-size: clamp(2.2rem, 5vw, 3rem); }
+.clan--featured .clan__name { margin-bottom: 0; }
+.clan__feat { display: flex; align-items: center; gap: clamp(1.2rem, 3vw, 2.4rem); flex-wrap: wrap; }
+.pal { text-align: center; }
+.pal b { display: block; font-family: "Rajdhani"; font-weight: 700; font-size: 2.2rem; color: #fff; line-height: 1; }
+.pal span { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.pal-sep { width: 1px; align-self: stretch; background: var(--border); }
+.pal-title { font-size: 0.78rem; font-weight: 600; color: var(--c, var(--accent)); margin-bottom: 0.7rem; }
+.pal-row { display: flex; gap: 1.6rem; }
 
 /* ---------- Recruitment ---------- */
 .recruit { overflow: hidden; }
@@ -146,6 +162,9 @@ section:not(.hero) { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem
 .recruit__cta { text-align: center; }
 
 /* ---------- Community ---------- */
+.modes { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; max-width: 780px; margin: -1.4rem auto 3rem; }
+.mode { padding: 0.6rem 1.15rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-weight: 500; font-size: 0.95rem; transition: transform 0.25s, border-color 0.25s, background 0.25s; }
+.mode:hover { transform: translateY(-2px); border-color: rgba(61, 220, 132, 0.45); background: var(--surface-2); }
 .commu__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
 .feat { padding: 2rem 1.6rem; transition: transform 0.3s, border-color 0.3s; }
 .feat:hover { transform: translateY(-5px); border-color: rgba(61,220,132,0.4); }
@@ -168,7 +187,11 @@ section:not(.hero) { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .stats__grid, .recruit__grid { grid-template-columns: repeat(2, 1fr); }
-  .clans__grid, .commu__grid { grid-template-columns: 1fr; }
+  .clans__grid, .commu__grid, .clans__row { grid-template-columns: 1fr; }
+  .clan--featured { flex-direction: column; text-align: center; gap: 1.6rem; }
+  .clan--featured .clan__id { flex-direction: column; }
+  .clan__feat { justify-content: center; }
+  .pal-sep { display: none; }
   .nav__links, .nav__cta { display: none; }
   .nav__burger { display: flex; margin-left: auto; }
   .nav__links.open {
