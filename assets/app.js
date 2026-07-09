@@ -2,7 +2,7 @@
  *  GR0UT — site vitrine
  *  ⚙️  À PERSONNALISER : remplace par ton lien d'invitation Discord.
  * ------------------------------------------------------------------ */
-const DISCORD_INVITE = "https://discord.gg/grout";
+const DISCORD_INVITE = "https://discord.gg/FFm85xVMg";
 const API = "https://gr0ut-globalmap.sebastien050599.workers.dev/api/clans";
 
 // --- Liens Discord ---
