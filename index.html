@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GR0UT — Communauté francophone World of Tanks</title>
+  <meta name="title" content="GR0UT — Communauté francophone World of Tanks" />
+  <meta name="description" content="GR0UT · GR0VT · GR0UF — l'une des plus grosses communautés francophones de World of Tanks. Carte Globale, escarmouches, bonne ambiance. Rejoins-nous !" />
+  <meta name="keywords" content="GR0UT, GR0VT, GR0UF, World of Tanks, WoT, Clan, France, Francophone, Carte Globale, eSports" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GR0UT — Communauté francophone World of Tanks" />
+  <meta property="og:description" content="GR0UT · GR0VT · GR0UF — communauté FR World of Tanks. Excellence, entraide, compétition. Rejoins-nous !" />
+  <meta property="og:image" content="https://eu.wargaming.net/clans/media/clans/emblems/cl_786/500165786/emblem_195x195.png" />
+  <meta name="theme-color" content="#0a0e12" />
+  <link rel="icon" href="https://eu.wargaming.net/clans/media/clans/emblems/cl_786/500165786/emblem_64x64.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand">
+      <img src="https://eu.wargaming.net/clans/media/clans/emblems/cl_786/500165786/emblem_64x64.png" alt="" />
+      <span>GR<span class="z">0</span>UT</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#clans">Les clans</a>
+      <a href="#stats">Stats live</a>
+      <a href="#recrutement">Recrutement</a>
+      <a href="#commu">Communauté</a>
+    </nav>
+    <a class="btn btn--discord nav__cta" data-discord href="#">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.3.5c1.6.4 2.9 1 4.2 1.8-1.6-.8-3.3-1.3-5-1.4a17.9 17.9 0 0 0-5.7.7C7 5 5.9 5.5 4.7 6.2c1.2-.8 2.6-1.4 4.1-1.8L8.6 3a19.8 19.8 0 0 0-4.9 1.4C1.4 8 .6 11.5.9 15c1.4 1 3.3 1.8 5.2 2l.7-1.1c-1-.3-1.9-.7-2.7-1.2l.7-.4c3.4 1.6 7.6 1.6 11 0l.7.4c-.8.5-1.7.9-2.7 1.2l.7 1.1c1.9-.2 3.8-1 5.2-2 .4-4-.8-7.5-3.1-10.6ZM8.5 13.2c-.9 0-1.7-.9-1.7-1.9s.7-1.9 1.7-1.9 1.7.9 1.7 1.9-.8 1.9-1.7 1.9Zm7 0c-.9 0-1.7-.9-1.7-1.9s.7-1.9 1.7-1.9 1.7.9 1.7 1.9-.8 1.9-1.7 1.9Z"/></svg>
+      Discord
+    </a>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero__glow"></div>
+    <div class="hero__inner">
+      <div class="hero__badge reveal">🇫🇷 Communauté francophone · World of Tanks EU</div>
+      <h1 class="hero__title reveal">GR<span class="z">0</span>UT</h1>
+      <p class="hero__tags reveal">GR0UT&nbsp;·&nbsp;GR0VT&nbsp;·&nbsp;GR0UF</p>
+      <p class="hero__lead reveal">Trois clans, une communauté. Carte Globale, escarmouches et bonne ambiance —
+        <strong>l'une des plus grosses familles FR</strong> de World of Tanks.</p>
+      <div class="hero__cta reveal">
+        <a class="btn btn--primary" href="#recrutement">Nous rejoindre</a>
+        <a class="btn btn--ghost" data-discord href="#">Rejoindre le Discord</a>
+      </div>
+      <div class="hero__scroll reveal" aria-hidden="true"><span></span>scroll</div>
+    </div>
+  </section>
+
+  <!-- STATS LIVE -->
+  <section class="stats" id="stats">
+    <div class="section-head reveal">
+      <span class="eyebrow">En direct</span>
+      <h2>La commu en chiffres</h2>
+      <p class="muted">Données live via l'API Wargaming · mises à jour en continu.</p>
+    </div>
+    <div class="stats__grid" id="stats-grid">
+      <div class="stat glass reveal"><div class="stat__num" data-count="0" data-suffix="">—</div><div class="stat__label">Membres</div></div>
+      <div class="stat glass reveal"><div class="stat__num" data-count="0" data-suffix="">—</div><div class="stat__label">Batailles Carte Globale</div></div>
+      <div class="stat glass reveal"><div class="stat__num" data-count="0" data-suffix="">—</div><div class="stat__label">Provinces tenues</div></div>
+      <div class="stat glass reveal"><div class="stat__num" data-count="0" data-suffix="">—</div><div class="stat__label">Clans</div></div>
+    </div>
+  </section>
+
+  <!-- CLANS -->
+  <section class="clans" id="clans">
+    <div class="section-head reveal">
+      <span class="eyebrow">La structure</span>
+      <h2>Nos trois clans</h2>
+      <p class="muted">Un clan pour chaque niveau et chaque envie — tu trouveras forcément ta place.</p>
+    </div>
+    <div class="clans__grid" id="clans-grid">
+      <!-- injecté par JS ; fallback statique ci-dessous -->
+    </div>
+  </section>
+
+  <!-- RECRUTEMENT -->
+  <section class="recruit" id="recrutement">
+    <div class="recruit__glow"></div>
+    <div class="section-head reveal">
+      <span class="eyebrow">On recrute</span>
+      <h2>Rejoins l'aventure</h2>
+      <p class="muted">Débutant motivé ou tryharder confirmé : il y a une place pour toi.</p>
+    </div>
+    <div class="recruit__grid">
+      <div class="crit glass reveal"><div class="crit__ico">🎯</div><h3>WN8 récent ~1500+</h3><p>Pour la Carte Globale. Les clans Family / Elite accueillent tous les niveaux pour progresser.</p></div>
+      <div class="crit glass reveal"><div class="crit__ico">🛡️</div><h3>Chars tier X meta</h3><p>Quelques chars compétitifs (IS-7, 907, EBR, 279e…) pour les soirées Carte Globale.</p></div>
+      <div class="crit glass reveal"><div class="crit__ico">🗣️</div><h3>Actif & sur Discord</h3><p>On joue en équipe, sur Discord, dans la bonne humeur. L'ambiance avant tout.</p></div>
+      <div class="crit glass reveal"><div class="crit__ico">🇫🇷</div><h3>Francophone</h3><p>France, Belgique, Suisse, Québec… tous les francophones sont les bienvenus.</p></div>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><span>1</span>Rejoins le Discord</div>
+      <div class="step-arrow">→</div>
+      <div class="step"><span>2</span>Présente-toi aux recruteurs</div>
+      <div class="step-arrow">→</div>
+      <div class="step"><span>3</span>Joue avec nous 🎮</div>
+    </div>
+    <div class="recruit__cta reveal">
+      <a class="btn btn--primary btn--lg" data-discord href="#">Postuler sur le Discord</a>
+    </div>
+  </section>
+
+  <!-- COMMUNAUTÉ -->
+  <section class="commu" id="commu">
+    <div class="section-head reveal">
+      <span class="eyebrow">Au-delà du jeu</span>
+      <h2>Une vraie communauté</h2>
+    </div>
+    <div class="commu__grid">
+      <div class="feat glass reveal"><div class="feat__ico">⚔️</div><h3>Carte Globale</h3><p>Batailles de clan chaque soir, notifs auto ~1h avant, provinces à conquérir.</p></div>
+      <div class="feat glass reveal"><div class="feat__ico">🏆</div><h3>Leaderboards</h3><p>Classements quotidiens des meilleurs joueurs — tire-toi la bourre avec les copains.</p></div>
+      <div class="feat glass reveal"><div class="feat__ico">📺</div><h3>Streams & events</h3><p>Nos membres streament, on organise des events internes et des soirées fun.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final reveal">
+    <h2>Prêt à rouler avec nous ?</h2>
+    <p class="muted">Rejoins des centaines de joueurs FR sur le Discord GR0UT.</p>
+    <a class="btn btn--primary btn--lg" data-discord href="#">Rejoindre le Discord</a>
+  </section>
+
+  <footer class="foot">
+    <div class="foot__brand">GR<span class="z">0</span>UT · GR0VT · GR0UF</div>
+    <p class="muted">Communauté francophone World of Tanks · non affiliée à Wargaming.<br />Stats via l'API publique Wargaming.net.</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
