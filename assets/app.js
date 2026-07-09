@@ -76,9 +76,12 @@ async function loadClans() {
           </div>
         </div>
         <div class="clan__feat">
-          <div class="pal"><b>${fmt(featured.members)}</b><span>Membres</span></div>
+          <div class="feat-col">
+            <div class="pal-title">👥 Communauté</div>
+            <div class="pal-row"><div class="pal"><b>${fmt(featured.members)}</b><span>Membres</span></div></div>
+          </div>
           <div class="pal-sep"></div>
-          <div>
+          <div class="feat-col">
             <div class="pal-title">🏆 Chars de récompense gagnés</div>
             <div class="pal-row">${manHtml}</div>
           </div>
