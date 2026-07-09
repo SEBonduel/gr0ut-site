@@ -72,7 +72,7 @@ async function loadClans() {
 
     // Stats globales
     const sum = (k) => clans.reduce((a, c) => a + (c[k] || 0), 0);
-    const totals = [sum("members"), sum("battles"), sum("provinces"), clans.length];
+    const totals = [sum("members"), sum("battles"), clans.length];
     document.querySelectorAll("#stats-grid .stat__num").forEach((el, i) => {
       const val = totals[i];
       const io2 = new IntersectionObserver((ents) => ents.forEach((e) => {
@@ -92,7 +92,7 @@ async function loadClans() {
         <div class="clan__role">${c.r}</div>
         <div class="clan__name">Communauté francophone WoT</div>
       </article>`).join("");
-    document.querySelectorAll("#stats-grid .stat__num").forEach((el, i) => { el.textContent = ["—", "—", "—", "3"][i]; });
+    document.querySelectorAll("#stats-grid .stat__num").forEach((el, i) => { el.textContent = ["—", "—", "3"][i]; });
   }
 }
 loadClans();

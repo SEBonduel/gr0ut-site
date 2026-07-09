@@ -107,7 +107,7 @@ section:not(.hero) { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem
 .glass { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); backdrop-filter: blur(8px); }
 
 /* ---------- Stats ---------- */
-.stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+.stats__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
 .stat { padding: 2rem 1.2rem; text-align: center; transition: transform 0.3s, border-color 0.3s; }
 .stat:hover { transform: translateY(-4px); border-color: rgba(61,220,132,0.4); }
 .stat__num { font-family: "Rajdhani"; font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.2rem); color: #fff; line-height: 1; }
