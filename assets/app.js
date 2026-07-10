@@ -8,7 +8,7 @@ const API = "https://gr0ut-globalmap.sebastien050599.workers.dev/api/clans";
 // Clan mis en vedette (grande carte) + palmarès chars de récompense (Manœuvres)
 const FEATURED_TAG = "GR0UT";
 const MANEUVERS = [
-  { label: "Manœuvres nov. 2025", tanks: 46 },
+  { label: "Manœuvres nov. 2025", tanks: 43 },
   { label: "Manœuvres avr. 2026", tanks: 60 },
 ];
 
