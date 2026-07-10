@@ -43,7 +43,7 @@ function updateTank() {
   // Bouffée de fumée à l'arrière du char quand il bouge
   if ((up || down) && !reduceMotion) {
     const now = performance.now();
-    if (now - lastSmoke > 60) {
+    if (now - lastSmoke > 40) {
       lastSmoke = now;
       const rev = tankUnit.classList.contains("rev");
       const tankLeft = p * (window.innerWidth - 62);
@@ -52,7 +52,7 @@ function updateTank() {
       puff.style.left = tankLeft + (rev ? 50 : 10) + "px"; // arrière = opposé au sens
       puff.style.setProperty("--dx", (rev ? 16 : -16) + "px");
       tankWrap.appendChild(puff);
-      setTimeout(() => puff.remove(), 1000);
+      setTimeout(() => puff.remove(), 1100);
     }
   }
   lastY = y;
