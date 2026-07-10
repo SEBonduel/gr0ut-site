@@ -181,6 +181,18 @@ section:not(.hero) { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem
 .foot__brand { font-family: "Rajdhani"; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.6rem; }
 .foot .muted { font-size: 0.85rem; }
 
+/* ---------- Jauge de scroll : le char ---------- */
+.scroll-tank { position: fixed; left: 0; right: 0; bottom: 0; height: 52px; z-index: 40; pointer-events: none; }
+.scroll-tank__road { position: absolute; bottom: 11px; left: 0; right: 0; height: 2px; background: var(--border); }
+.scroll-tank__trail { position: absolute; bottom: 11px; left: 0; height: 2px; width: calc(var(--p, 0) * 100%); background: linear-gradient(90deg, transparent, var(--accent)); box-shadow: 0 0 12px var(--glow); }
+.scroll-tank__unit { position: absolute; bottom: 7px; width: 62px; left: calc(var(--p, 0) * (100% - 62px)); transition: left 0.12s linear; filter: drop-shadow(0 3px 8px var(--glow)); }
+.scroll-tank__unit svg { width: 100%; height: auto; display: block; transition: transform 0.35s cubic-bezier(.2,.8,.2,1); }
+.scroll-tank__unit.rev svg { transform: scaleX(-1); }
+.t-barrel, .t-hull { fill: var(--accent); }
+.t-turret { fill: #4be895; }
+.t-track { fill: #0f5a34; stroke: var(--accent); stroke-width: 1.5; }
+.t-wheel { fill: #081018; stroke: var(--accent); stroke-width: 1; }
+
 /* ---------- Loaders (skeleton shimmer) ---------- */
 .sk { position: relative; overflow: hidden; background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
 .sk::after { content: ""; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.09), transparent); animation: shimmer 1.4s infinite; }

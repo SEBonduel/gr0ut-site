@@ -24,6 +24,23 @@ const nav = document.getElementById("nav");
 const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 20);
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
+
+// --- Jauge de scroll : le char avance (droite) / recule (gauche) ---
+const tankWrap = document.getElementById("scroll-tank");
+const tankUnit = document.getElementById("tank-unit");
+let lastY = window.scrollY;
+function updateTank() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+  tankWrap.style.setProperty("--p", p);
+  const y = window.scrollY;
+  if (y < lastY - 1) tankUnit.classList.add("rev");        // on remonte -> le char recule
+  else if (y > lastY + 1) tankUnit.classList.remove("rev"); // on descend -> le char avance
+  lastY = y;
+}
+window.addEventListener("scroll", updateTank, { passive: true });
+window.addEventListener("resize", updateTank);
+updateTank();
 const burger = document.getElementById("burger");
 const links = document.querySelector(".nav__links");
 burger?.addEventListener("click", () => links.classList.toggle("open"));

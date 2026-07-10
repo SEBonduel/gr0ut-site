@@ -148,6 +148,24 @@
     <p class="muted">Communauté francophone World of Tanks · non affiliée à Wargaming.<br />Stats via l'API publique Wargaming.net.</p>
   </footer>
 
+  <!-- Jauge de scroll : char qui avance/recule selon la progression verticale -->
+  <div class="scroll-tank" id="scroll-tank" aria-hidden="true">
+    <div class="scroll-tank__road"></div>
+    <div class="scroll-tank__trail"></div>
+    <div class="scroll-tank__unit" id="tank-unit">
+      <svg viewBox="0 0 72 40" xmlns="http://www.w3.org/2000/svg">
+        <rect class="t-barrel" x="42" y="12" width="26" height="3.5" rx="1.75" />
+        <path class="t-turret" d="M24 17 L26 8 L40 8 L43 17 Z" />
+        <path class="t-hull" d="M8 26 L14 16 L52 16 L56 26 Z" />
+        <rect class="t-track" x="3" y="25" width="54" height="12" rx="6" />
+        <circle class="t-wheel" cx="11" cy="31" r="3" />
+        <circle class="t-wheel" cx="22" cy="31" r="3" />
+        <circle class="t-wheel" cx="33" cy="31" r="3" />
+        <circle class="t-wheel" cx="44" cy="31" r="3" />
+      </svg>
+    </div>
+  </div>
+
   <script src="assets/app.js"></script>
 </body>
 </html>
