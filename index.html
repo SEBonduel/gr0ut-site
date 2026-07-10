@@ -136,34 +136,16 @@
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="final reveal">
-    <div class="final__panel">
-      <svg class="final__tank" viewBox="0 0 480 236" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
-        <g fill="currentColor">
-          <rect x="18" y="94" width="170" height="12" rx="6" />
-          <rect x="178" y="82" width="34" height="36" rx="8" />
-          <path d="M198 112 C204 58 250 48 300 50 C352 52 372 82 374 112 Z" />
-          <rect x="296" y="36" width="30" height="20" rx="6" />
-          <path d="M168 112 L404 112 L436 142 L138 142 Z" />
-          <rect x="128" y="140" width="326" height="30" rx="9" />
-          <rect x="114" y="164" width="356" height="54" rx="27" />
-        </g>
-        <g fill="rgba(0,0,0,0.4)">
-          <circle cx="150" cy="191" r="20" />
-          <circle cx="196" cy="191" r="17" />
-          <circle cx="240" cy="191" r="17" />
-          <circle cx="284" cy="191" r="17" />
-          <circle cx="328" cy="191" r="17" />
-          <circle cx="372" cy="191" r="17" />
-          <circle cx="430" cy="191" r="21" />
-        </g>
-      </svg>
-      <div class="final__content">
-        <h2>Prêt à rouler avec nous ?</h2>
-        <p class="muted">Rejoins des centaines de joueurs FR sur le Discord GR0UT.</p>
-        <a class="btn btn--primary btn--lg" data-discord href="#">Rejoindre le Discord</a>
-      </div>
+  <!-- CTA FINAL (vidéo en fond) -->
+  <section class="final" id="final">
+    <video class="final__bg" autoplay muted loop playsinline preload="auto" poster="assets/final-poster.jpg">
+      <source src="assets/final.mp4" type="video/mp4" />
+    </video>
+    <div class="final__overlay"></div>
+    <div class="final__card glass reveal">
+      <h2>Prêt à rouler avec nous ?</h2>
+      <p class="muted">Rejoins des centaines de joueurs FR sur le Discord GR0UT.</p>
+      <a class="btn btn--primary btn--lg" data-discord href="#">Rejoindre le Discord</a>
     </div>
   </section>
 
