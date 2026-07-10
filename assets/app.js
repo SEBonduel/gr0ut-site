@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------ *
- *  GR0UT — site vitrine
+ *  GR0UT - site vitrine
  *  ⚙️  À PERSONNALISER : remplace par ton lien d'invitation Discord.
  * ------------------------------------------------------------------ */
 const DISCORD_INVITE = "https://discord.gg/FFm85xVMg";
@@ -51,7 +51,7 @@ function animateCount(el, target, suffix = "") {
 
 // --- Données live des 3 clans ---
 const COLORS = { GR0UT: "#3ddc84", GR0VT: "#8b5cf6", GR0UF: "#38bdf8" };
-const fmt = (n) => (n == null ? "—" : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " "));
+const fmt = (n) => (n == null ? "-" : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " "));
 
 async function loadClans() {
   const grid = document.getElementById("clans-grid");
@@ -124,7 +124,7 @@ async function loadClans() {
         <article class="clan glass in" style="--c:#8b5cf6"><div class="clan__tag">GR0VT</div><div class="clan__role">Grout Elite</div><div class="clan__name">Clan Élite</div></article>
         <article class="clan glass in" style="--c:#38bdf8"><div class="clan__tag">GR0UF</div><div class="clan__role">Grout Family</div><div class="clan__name">Académie / détente</div></article>
       </div>`;
-    document.querySelectorAll("#stats-grid .stat__num").forEach((el, i) => { el.textContent = ["—", "—", "3"][i]; });
+    document.querySelectorAll("#stats-grid .stat__num").forEach((el, i) => { el.textContent = ["-", "-", "3"][i]; });
   }
 }
 loadClans();
