@@ -65,9 +65,9 @@
       <p class="muted">Données live via l'API Wargaming · mises à jour en continu.</p>
     </div>
     <div class="stats__grid" id="stats-grid">
-      <div class="stat glass reveal"><div class="stat__num" data-count="0" data-suffix="">—</div><div class="stat__label">Membres</div></div>
-      <div class="stat glass reveal"><div class="stat__num" data-count="0" data-suffix="">—</div><div class="stat__label">Batailles Carte Globale</div></div>
-      <div class="stat glass reveal"><div class="stat__num" data-count="0" data-suffix="">—</div><div class="stat__label">Clans</div></div>
+      <div class="stat glass reveal"><div class="stat__num" data-count="0"><span class="sk sk-num"></span></div><div class="stat__label">Membres</div></div>
+      <div class="stat glass reveal"><div class="stat__num" data-count="0"><span class="sk sk-num"></span></div><div class="stat__label">Batailles Carte Globale</div></div>
+      <div class="stat glass reveal"><div class="stat__num" data-count="0"><span class="sk sk-num"></span></div><div class="stat__label">Clans</div></div>
     </div>
   </section>
 
@@ -79,7 +79,11 @@
       <p class="muted">Un clan pour chaque niveau et chaque envie — tu trouveras forcément ta place.</p>
     </div>
     <div class="clans__grid" id="clans-grid">
-      <!-- injecté par JS ; fallback statique ci-dessous -->
+      <div class="sk sk-card sk-card--featured"></div>
+      <div class="clans__row">
+        <div class="sk sk-card"></div>
+        <div class="sk sk-card"></div>
+      </div>
     </div>
   </section>
 
