@@ -29,13 +29,32 @@ window.addEventListener("scroll", onScroll, { passive: true });
 const tankWrap = document.getElementById("scroll-tank");
 const tankUnit = document.getElementById("tank-unit");
 let lastY = window.scrollY;
+let lastSmoke = 0;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 function updateTank() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
   tankWrap.style.setProperty("--p", p);
   const y = window.scrollY;
-  if (y < lastY - 1) tankUnit.classList.add("rev");        // on remonte -> le char recule
-  else if (y > lastY + 1) tankUnit.classList.remove("rev"); // on descend -> le char avance
+  const up = y < lastY - 1, down = y > lastY + 1;
+  if (up) tankUnit.classList.add("rev");        // on remonte -> le char recule
+  else if (down) tankUnit.classList.remove("rev"); // on descend -> le char avance
+
+  // Bouffée de fumée à l'arrière du char quand il bouge
+  if ((up || down) && !reduceMotion) {
+    const now = performance.now();
+    if (now - lastSmoke > 60) {
+      lastSmoke = now;
+      const rev = tankUnit.classList.contains("rev");
+      const tankLeft = p * (window.innerWidth - 62);
+      const puff = document.createElement("span");
+      puff.className = "smoke";
+      puff.style.left = tankLeft + (rev ? 50 : 10) + "px"; // arrière = opposé au sens
+      puff.style.setProperty("--dx", (rev ? 16 : -16) + "px");
+      tankWrap.appendChild(puff);
+      setTimeout(() => puff.remove(), 1000);
+    }
+  }
   lastY = y;
 }
 window.addEventListener("scroll", updateTank, { passive: true });

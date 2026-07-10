@@ -185,7 +185,9 @@ section:not(.hero) { max-width: var(--maxw); margin: 0 auto; padding: clamp(4rem
 .scroll-tank { position: fixed; left: 0; right: 0; bottom: 0; height: 52px; z-index: 40; pointer-events: none; }
 .scroll-tank__road { position: absolute; bottom: 11px; left: 0; right: 0; height: 2px; background: var(--border); }
 .scroll-tank__trail { position: absolute; bottom: 11px; left: 0; height: 2px; width: calc(var(--p, 0) * 100%); background: linear-gradient(90deg, transparent, var(--accent)); box-shadow: 0 0 12px var(--glow); }
-.scroll-tank__unit { position: absolute; bottom: 7px; width: 62px; left: calc(var(--p, 0) * (100% - 62px)); transition: left 0.12s linear; filter: drop-shadow(0 3px 8px var(--glow)); }
+.scroll-tank__unit { position: absolute; bottom: 7px; width: 62px; left: calc(var(--p, 0) * (100% - 62px)); transition: left 0.12s linear; filter: drop-shadow(0 3px 8px var(--glow)); z-index: 2; }
+.smoke { position: absolute; bottom: 12px; width: 9px; height: 9px; border-radius: 50%; background: rgba(200, 214, 205, 0.3); filter: blur(1.5px); pointer-events: none; z-index: 1; animation: smoke 1s ease-out forwards; }
+@keyframes smoke { 0% { transform: translate(0, 0) scale(0.5); opacity: 0.55; } 100% { transform: translate(var(--dx, -16px), -26px) scale(2.6); opacity: 0; } }
 .scroll-tank__unit svg { width: 100%; height: auto; display: block; transition: transform 0.35s cubic-bezier(.2,.8,.2,1); }
 .scroll-tank__unit.rev svg { transform: scaleX(-1); }
 .t-barrel, .t-hull { fill: var(--accent); }
