@@ -165,6 +165,16 @@ async function loadClans() {
 }
 loadClans();
 
+// --- Autoplay robuste de la vidéo de fond (section finale) ---
+const finalVid = document.querySelector(".final__bg");
+if (finalVid) {
+  const playVid = () => { finalVid.muted = true; const p = finalVid.play(); if (p && p.catch) p.catch(() => {}); };
+  playVid();
+  ["pointerdown", "scroll", "touchstart", "keydown"].forEach((ev) =>
+    window.addEventListener(ev, playVid, { once: true, passive: true })
+  );
+}
+
 // --- Fond : réseau de particules ---
 (function bgCanvas() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
