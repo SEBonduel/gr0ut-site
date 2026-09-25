@@ -2,7 +2,7 @@
  *  GR0UT - site vitrine
  *  ⚙️  À PERSONNALISER : remplace par ton lien d'invitation Discord.
  * ------------------------------------------------------------------ */
-const DISCORD_INVITE = "https://discord.gg/FFm85xVMg";
+const DISCORD_INVITE = "https://discord.gg/QhyyC7JUc";
 const API = "https://gr0ut-globalmap.sebastien050599.workers.dev/api/clans";
 
 // Clan mis en vedette (grande carte) + palmarès chars de récompense (Manœuvres)
