@@ -5,12 +5,28 @@
 const DISCORD_INVITE = "https://discord.gg/PVHPv7XdD6";
 const API = "https://gr0ut-globalmap.sebastien050599.workers.dev/api/clans";
 
-// Clan mis en vedette (grande carte) + palmarès chars de récompense (Manœuvres)
+// Clan mis en vedette (grande carte) + palmarès chars de récompense (Manœuvres), par clan.
+// Chars = joueurs du clan dans les 9 000 premiers (source : gunmarks.app/maneuvers).
 const FEATURED_TAG = "GR0UT";
-const MANEUVERS = [
-  { label: "Manœuvres nov. 2025", tanks: 43 },
-  { label: "Manœuvres avr. 2026", tanks: 60 },
-];
+const MANEUVERS = {
+  GR0UT: [
+    { label: "Manœuvres nov. 2025", tanks: 43 },
+    { label: "Manœuvres avr. 2026", tanks: 60 },
+    { label: "Manœuvres nov. 2026", tanks: 46 },
+  ],
+  GR0VT: [
+    { label: "Manœuvres nov. 2026", tanks: 70 },
+  ],
+};
+const palHtml = (tag) =>
+  (MANEUVERS[tag] || []).map((m) => `<div class="pal"><b>${m.tanks}</b><span>${m.label}</span></div>`).join("");
+/** Stats d'un petit clan : membres + chars de la dernière Manœuvre s'il en a gagné. */
+const smallStats = (tag, members) => {
+  const last = (MANEUVERS[tag] || []).at(-1);
+  const cells = members == null ? [] : [`<div><b>${members}</b><span>Membres</span></div>`];
+  if (last) cells.push(`<div><b>🏆 ${last.tanks}</b><span>Chars · ${last.label}</span></div>`);
+  return `<div class="clan__stats clan__stats--${cells.length > 1 ? "duo" : "solo"}">${cells.join("")}</div>`;
+};
 
 // --- Liens Discord ---
 document.querySelectorAll("[data-discord]").forEach((a) => {
@@ -85,6 +101,16 @@ function animateCount(el, target, suffix = "") {
   requestAnimationFrame(frame);
 }
 
+// --- Record Manœuvres : le chiffre monte quand le bloc apparaît ---
+const recordNum = document.getElementById("record-num");
+if (recordNum && !reduceMotion) {
+  const target = Number(recordNum.dataset.target) || 0;
+  const ioRec = new IntersectionObserver((ents) => ents.forEach((e) => {
+    if (e.isIntersecting) { animateCount(recordNum, target); ioRec.unobserve(recordNum); }
+  }), { threshold: 0.5 });
+  ioRec.observe(recordNum);
+}
+
 // --- Données live des 3 clans ---
 const COLORS = { GR0UT: "#3ddc84", GR0VT: "#8b5cf6", GR0UF: "#38bdf8" };
 const fmt = (n) => (n == null ? "-" : String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " "));
@@ -99,7 +125,7 @@ async function loadClans() {
     const col = (c) => COLORS[c.tag] || c.color || "#3ddc84";
     const featured = clans.find((c) => c.tag === FEATURED_TAG) || clans[0];
     const others = clans.filter((c) => c !== featured);
-    const manHtml = MANEUVERS.map((m) => `<div class="pal"><b>${m.tanks}</b><span>${m.label}</span></div>`).join("");
+    const manHtml = palHtml(featured.tag);
 
     grid.innerHTML =
       `<article class="clan clan--featured glass reveal" style="--c:${col(featured)}">
@@ -130,7 +156,7 @@ async function loadClans() {
           <div class="clan__tag">${c.tag}</div>
           <div class="clan__role">${c.role}</div>
           <div class="clan__name">${c.name || ""}</div>
-          <div class="clan__stats clan__stats--solo"><div><b>${fmt(c.members)}</b><span>Membres</span></div></div>
+          ${smallStats(c.tag, fmt(c.members))}
         </article>`).join("") +
       `</div>`;
     grid.querySelectorAll(".reveal").forEach((el) => io.observe(el));
@@ -147,7 +173,7 @@ async function loadClans() {
     });
   } catch (e) {
     // Fallback : le site reste beau même si l'API est indispo
-    const manHtml = MANEUVERS.map((m) => `<div class="pal"><b>${m.tanks}</b><span>${m.label}</span></div>`).join("");
+    const manHtml = palHtml("GR0UT");
     grid.innerHTML =
       `<article class="clan clan--featured glass in" style="--c:#3ddc84">
         <div class="clan__id">
@@ -157,7 +183,7 @@ async function loadClans() {
         <div class="clan__feat"><div><div class="pal-title">🏆 Chars de récompense gagnés</div><div class="pal-row">${manHtml}</div></div></div>
       </article>
       <div class="clans__row">
-        <article class="clan glass in" style="--c:#8b5cf6"><div class="clan__tag">GR0VT</div><div class="clan__role">Grout Elite</div><div class="clan__name">Clan Élite</div></article>
+        <article class="clan glass in" style="--c:#8b5cf6"><div class="clan__tag">GR0VT</div><div class="clan__role">Grout Elite</div><div class="clan__name">Clan Élite</div>${MANEUVERS.GR0VT ? smallStats("GR0VT", null) : ""}</article>
         <article class="clan glass in" style="--c:#38bdf8"><div class="clan__tag">GR0UF</div><div class="clan__role">Grout Family</div><div class="clan__name">Académie / détente</div></article>
       </div>`;
     document.querySelectorAll("#stats-grid .stat__num").forEach((el, i) => { el.textContent = ["-", "-", "3"][i]; });
